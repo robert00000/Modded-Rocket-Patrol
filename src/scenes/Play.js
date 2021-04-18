@@ -3,10 +3,11 @@ class Play extends Phaser.Scene{
         super("playScene");
     }
     preload(){
-        this.load.image('rocket', './assets/rocket.png');
+        this.load.image('rocket', './assets/Rocket redone.png');
+        this.load.image('p1Tank', './assets/playerTank.png')
         this.load.image('spaceship', './assets/spaceship.png');
         this.load.image('starfield', './assets/starfield.png');
-        this.load.image('Bonus_Ship', './assets/Bonus_Ship.png');
+        this.load.image('Bonus_Ship', './assets/newShip.png');
         // load spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png',{
             frameWidth: 64,
@@ -31,6 +32,7 @@ class Play extends Phaser.Scene{
 
         // add Rocket (p1)
         this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - borderUISize - borderPadding, 'rocket').setOrigin(0.5, 0);
+        this.p1Tank = new Tank(this, game.config.width/2, game.config.height - borderUISize - borderPadding, 'p1Tank').setOrigin(0.5, 0);
         // p2 rocket
         //this.p2Rocket = new Rocket2(this, game.config.width/2, game.config.height - borderUISize - borderPadding, 'rocket').setOrigin(-0.5, 0);
         // add Spaceships (x3)
@@ -105,6 +107,7 @@ class Play extends Phaser.Scene{
         }
         //update rocket
         this.p1Rocket.update();
+        this.p1Tank.update();
         // update spaceships (x3)
         this.ship01.update();
         this.ship02.update();

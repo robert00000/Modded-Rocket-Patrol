@@ -31,20 +31,21 @@ class Play extends Phaser.Scene{
         // add Rocket (p1)
         this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - borderUISize - borderPadding, 'rocket').setOrigin(0.5, 0);
         // p2 rocket
-        this.p2Rocket = new Rocket2(this, game.config.width/2, game.config.height - borderUISize - borderPadding, 'rocket').setOrigin(-0.5, 0);
+        //this.p2Rocket = new Rocket2(this, game.config.width/2, game.config.height - borderUISize - borderPadding, 'rocket').setOrigin(-0.5, 0);
         // add Spaceships (x3)
         this.ship01 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*4, 'spaceship', 0, 30).setOrigin(0, 0);
         this.ship02 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'spaceship', 0, 20).setOrigin(0,0);
         this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'spaceship', 0, 10).setOrigin(0,0);
+        this.ship04 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'Bonus_Ship', 0, 35).setOrigin(0,0);
 
         // define keys
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
-        Key4 = this.input.keyboard.addKey(Phaser.Input.Keyboard.Keycodes.NUMPAD_4)
-        Key6 = this.input.keyboard.addKey(Phaser.Input.Keyboard.Keycodes.NUMPAD_6)
-        Key8 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_8)
+        //Key4 = this.input.keyboard.addKey(Phaser.Input.Keyboard.Keycodes.NUMPAD_4)
+        //Key6 = this.input.keyboard.addKey(Phaser.Input.Keyboard.Keycodes.NUMPAD_6)
+        //Key8 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_8)
         // animation config
         this.anims.create({
             key: 'explode',
@@ -87,7 +88,11 @@ class Play extends Phaser.Scene{
             frames: this.anims.generateFrameNumbers('explosion', { start: 0, end: 9, first: 0}),
             frameRate: 30
         });
-
+        
+        this.fire = this.add.text(150 + 150, borderUISize + borderPadding*2, 'Fire', scoreConfig);
+        //The text for the timer.
+        this.timer = this.add.text(275 + 275, borderUISize + borderPadding*2, 60 , scoreConfig);
+        
         
     }
     update(){
@@ -122,6 +127,7 @@ class Play extends Phaser.Scene{
             this.ship01.update();
             this.ship02.update();
             this.ship03.update();
+            
         }
     }
 

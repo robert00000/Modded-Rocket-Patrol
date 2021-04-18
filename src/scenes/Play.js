@@ -44,7 +44,7 @@ class Play extends Phaser.Scene{
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         Key4 = this.input.keyboard.addKey(Phaser.Input.Keyboard.Keycodes.L)
         Key6 = this.input.keyboard.addKey(Phaser.Input.Keyboard.Keycodes.J)
-        Key8 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.I
+        Key8 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.I)
         // animation config
         this.anims.create({
             key: 'explode',

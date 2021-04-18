@@ -15,7 +15,16 @@ class Tank extends Phaser.GameObjects.Sprite{
         if (keyRIGHT.isDown && this.x <= game.config.width - borderUISize - this.width) {
                 this.x += this.moveSpeed;
         }
-        
+        // fire button
+        if(Phaser.Input.Keyboard.JustDown(keyF) && !this.isFiring) {
+            this.isFiring = true;
+            this.sfxRocket.play();
+        }
+
+        // if fired, move up
+        if(this.isFiring && this.y >= borderUISize * 3 + borderPadding) {
+            this.y -= this.moveSpeed;
+        }
         // reset on miss
         if(this.y <= borderUISize * 3 + borderPadding) {
             this.reset();

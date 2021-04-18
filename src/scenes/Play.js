@@ -5,8 +5,8 @@ class Play extends Phaser.Scene{
     preload(){
         this.load.image('rocket', './assets/Rocket redone.png');
         this.load.image('p1Tank', './assets/playerTank.png')
-        this.load.image('spaceship', './assets/spaceship.png');
-        this.load.image('starfield', './assets/starfield.png');
+        this.load.image('spaceship', './assets/enemyTank.png');
+        this.load.image('starfield', './assets/Field.png');
         this.load.image('Bonus_Ship', './assets/newShip.png');
         // load spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png',{
@@ -39,7 +39,7 @@ class Play extends Phaser.Scene{
         this.ship01 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*4, 'spaceship', 0, 30).setOrigin(0, 0);
         this.ship02 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'spaceship', 0, 20).setOrigin(0,0);
         this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'spaceship', 0, 10).setOrigin(0,0);
-        this.ship04 = new Spaceship(this, game.config.width, borderUISize*2 + borderPadding*2, 'Bonus_Ship', 0, 50).setOrigin(0,0);
+        this.ship04 = new Spaceship(this, game.config.width, borderUISize*7 + borderPadding*6, 'spaceship', 0, 50).setOrigin(0,0);
 
         // define keys
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
@@ -99,7 +99,7 @@ class Play extends Phaser.Scene{
         
     }
     update(){
-        this.starfield.tilePositionX -= 4;
+        this.starfield.tilePositionX += 1;
         
         //check key input for restart
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)){

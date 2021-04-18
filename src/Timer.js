@@ -1,6 +1,23 @@
 //A simple function to update the time.
 
 
+var myVar = setInterval(myTimer, 1000);
+var tim_left = 60;
+
+function myTimer() {
+
+  // document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+  // document.write ("Time left: ", tim_left," of 60<br>");
+  
+  tim_left--;
+  
+  //if (tim_left < 0) {
+   //document.write ("Sorry... wah wah wah...")
+
+  //}
+
+
+}
 
 //the box for the timer
 

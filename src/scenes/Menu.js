@@ -6,9 +6,10 @@ class Menu extends Phaser.Scene {
   preload() {
       // load audio
       this.load.audio('sfx_select', './assets/blip_select12.wav');
-      this.load.audio('sfx_explosion', './assets/explosion1.wav');
+      this.load.audio('sfx_explosion', './assets/explosion4.wav');
       this.load.audio('sfx_rocket', './assets/Gun clicking.wav');
-      this.load.audio('sfx_clicking', './assets/Gun clicking.wav')
+      this.load.audio('sfx_clicking', './assets/Gun clicking.wav');
+     // this.load.audio('sfx_music', './assets/8bitMusic.mp3');
       // load images
       this.load.image('menuTank', './assets/menuBackground.png')
   }
@@ -41,7 +42,7 @@ class Menu extends Phaser.Scene {
     }
       // show menu text
       this.menuTank = this.add.tileSprite(0, 0, 640, 480, 'menuTank').setOrigin(0, 0);
-      this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'Welcome to a hideous game', menuConfig).setOrigin(0.5);
+      this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'Welcome to a Tank game', menuConfig).setOrigin(0.5);
       this.add.text(game.config.width/2, game.config.height/2, 'Use ←→ arrows keys to move & (F) to fire', textConfig).setOrigin(0.5);
       
       
@@ -57,12 +58,11 @@ class Menu extends Phaser.Scene {
       // easy mode
       game.settings = {
         spaceshipSpeed: .5,
-        gameTimer: 60000
+        gameTimer: 70000
       }
       
       this.sound.play('sfx_clicking');
       this.scene.start('playScene');    
-      tim_left = 60
     }
     if (Phaser.Input.Keyboard.JustDown(keyRIGHT)) {
       // hard mode
@@ -73,7 +73,6 @@ class Menu extends Phaser.Scene {
       
       this.sound.play('sfx_clicking');
       this.scene.start('playScene');    
-      tim_left = 45
     }
   }
 }

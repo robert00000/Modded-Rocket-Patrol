@@ -7,9 +7,9 @@ class Play extends Phaser.Scene{
         this.load.image('p1Tank', './assets/playerTank.png')
         this.load.image('spaceship', './assets/enemyTank.png');
         this.load.image('starfield', './assets/Field.png');
-        this.load.image('Bonus_Ship', './assets/newShip.png');
+        this.load.image('bonusTank', './assets/bonusTank.png');
         // load spritesheet
-        this.load.spritesheet('explosion', './assets/Temp explosion.png',{
+        this.load.spritesheet('explosion', './assets/pixelatedExplosion.png',{
             frameWidth: 64,
             frameHeight: 32,
             startFrame: 0,
@@ -41,7 +41,8 @@ class Play extends Phaser.Scene{
         this.ship02 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'spaceship', 0, 20).setOrigin(0,0);
         this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'spaceship', 0, 10).setOrigin(0,0);
         this.ship04 = new Spaceship(this, game.config.width, borderUISize*7 + borderPadding*6, 'spaceship', 0, 10).setOrigin(0,0);
-
+        this.ship05 = new Spaceship(this, game.config.width, borderUISize*5 + borderPadding*4, 'bonusTank', 0, 50).setOrigin(0,0);
+        
         // define keys
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
@@ -82,11 +83,11 @@ class Play extends Phaser.Scene{
         // 60-second play clock
         scoreConfig.fixedWidth = 0;
         this.clock = this.time.delayedCall(60000, () => {
-            this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2, 'Time is up!', scoreConfig).setOrigin(0.5);
             this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or ← to Menu', scoreConfig).setOrigin(0.5);
             this.gameOver = true;
         }, null, this);
-
+        
         // animation config
         this.anims.create({
             key: 'explode',
@@ -96,18 +97,29 @@ class Play extends Phaser.Scene{
         
         this.fire = this.add.text(150 + 150, borderUISize + borderPadding*2, 'Fire', scoreConfig);
         //The text for the timer.
-        
-        this.timer = this.add.text(275 + 275, borderUISize + borderPadding*2, 60 , scoreConfig);
+        // if(setInterval(clockFunc(), 1000)){
+            
+        // }
+        this.timer = this.add.text(275 + 275, borderUISize + borderPadding*2, timerVar, scoreConfig);
         
         
     }
     update(){
+        timerFunction();
+        this.timer.text = timerVar;
+        
         this.starfield.tilePositionX += 1;
         
         //check key input for restart
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)){
+            
             this.scene.restart();
+            timerReset();
         }
+
+
+
+        //update time
         //update rocket
         this.p1Rocket.update();
         this.p1Tank.update();
@@ -116,7 +128,7 @@ class Play extends Phaser.Scene{
         this.ship02.update();
         this.ship03.update();
         this.ship04.update();
-
+        this.ship05.update();
         // check collisions
         if(this.checkCollision(this.p1Rocket, this.ship04)){
             this.p1Rocket.reset();
@@ -134,12 +146,17 @@ class Play extends Phaser.Scene{
             this.p1Rocket.reset();
             this.shipExplode(this.ship01);
         }
+        if(this.checkCollision(this.p1Rocket, this.ship05)){
+            this.p1Rocket.reset();
+            this.shipExplode(this.ship05);
+        }
         if (!this.gameOver){
             this.p1Rocket.update();
             this.ship01.update();
             this.ship02.update();
             this.ship03.update();
             this.ship04.update();
+            this.ship05.update();
         }
     }
 
@@ -165,11 +182,17 @@ class Play extends Phaser.Scene{
         boom.on('animationcomplete', () => {    // callback after anim completes
           ship.reset();                         // reset ship position
           ship.alpha = 1;                       // make ship visible again
-          boom.destroy();                       // remove explosion sprite
-        });       
+          boom.destroy();       // remove explosion sprite
+        });   
+       
         this.p1Score += ship.points;
-        this.highScore += ship.points;
-        this.Highscore.text = this.highScore;
+        
         this.scoreLeft.text = this.p1Score;
-      }
+       
+                
+        
+    }
+
+    
+      
 }

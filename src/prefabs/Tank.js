@@ -4,7 +4,7 @@ class Tank extends Phaser.GameObjects.Sprite{
 
         scene.add.existing(this);
         this.isFiring = false;
-        this.moveSpeed = 1;
+        this.moveSpeed = 2;
         this.sfxEmpty = scene.sound.add('sfx_clicking')
     }
     update() {

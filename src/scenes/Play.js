@@ -9,7 +9,7 @@ class Play extends Phaser.Scene{
         this.load.image('starfield', './assets/Field.png');
         this.load.image('Bonus_Ship', './assets/newShip.png');
         // load spritesheet
-        this.load.spritesheet('explosion', './assets/explosion.png',{
+        this.load.spritesheet('explosion', './assets/Temp explosion.png',{
             frameWidth: 64,
             frameHeight: 32,
             startFrame: 0,
@@ -23,7 +23,7 @@ class Play extends Phaser.Scene{
         this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
 
         // green UI background
-        this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x00FF00).setOrigin(0, 0);
+        this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x5F9EA0).setOrigin(0, 0);
         // white borders
         this.add.rectangle(0, 0, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0 ,0);
         this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0 ,0);

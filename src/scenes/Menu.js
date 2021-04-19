@@ -7,7 +7,7 @@ class Menu extends Phaser.Scene {
       // load audio
       this.load.audio('sfx_select', './assets/blip_select12.wav');
       this.load.audio('sfx_explosion', './assets/Explosion4.wav');
-      this.load.audio('sfx_rocket', './assets/rocket_rumble.wav');
+      this.load.audio('sfx_rocket', './assets/Gun clicking.wav');
       this.load.audio('sfx_clicking', './assets/Gun clicking.wav');
       
       this.load.audio('sfx_music', './assets/8bitMusic.mp3');

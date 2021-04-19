@@ -19,9 +19,10 @@ class Play extends Phaser.Scene{
     }
 //Make player 2 as well as add some kind of music.
     create() {
+        
         // place tile sprite
         this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
-
+        
         // green UI background
         this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x5F9EA0).setOrigin(0, 0);
         // white borders
@@ -39,7 +40,7 @@ class Play extends Phaser.Scene{
         this.ship01 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*4, 'spaceship', 0, 30).setOrigin(0, 0);
         this.ship02 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'spaceship', 0, 20).setOrigin(0,0);
         this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'spaceship', 0, 10).setOrigin(0,0);
-        this.ship04 = new Spaceship(this, game.config.width, borderUISize*7 + borderPadding*6, 'spaceship', 0, 50).setOrigin(0,0);
+        this.ship04 = new Spaceship(this, game.config.width, borderUISize*7 + borderPadding*6, 'spaceship', 0, 10).setOrigin(0,0);
 
         // define keys
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
@@ -58,13 +59,13 @@ class Play extends Phaser.Scene{
 
         // initialize score
         this.p1Score = 0;
-
+        this.highScore;
         // display score
         let scoreConfig = {
             fontFamily: 'Courier',
             fontSize: '28px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
+            backgroundColor: '#FFF8DC',
+            color: '#9400D3',
             align: 'right',
             padding: {
                 top: 5,
@@ -73,6 +74,7 @@ class Play extends Phaser.Scene{
             fixedWidth: 100
         }
         this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, this.p1Score, scoreConfig);
+        this.Highscore = this.add.text(200 + 200, borderUISize + borderPadding*2, this.highScore, scoreConfig);
 
         // GAME OVER flag
         this.gameOver = false;
@@ -94,6 +96,7 @@ class Play extends Phaser.Scene{
         
         this.fire = this.add.text(150 + 150, borderUISize + borderPadding*2, 'Fire', scoreConfig);
         //The text for the timer.
+        
         this.timer = this.add.text(275 + 275, borderUISize + borderPadding*2, 60 , scoreConfig);
         
         
@@ -157,6 +160,7 @@ class Play extends Phaser.Scene{
         ship.alpha = 0;
         // create explosion sprite at ship's position
         let boom = this.add.sprite(ship.x, ship.y, 'explosion').setOrigin(0, 0);
+        this.sound.play('sfx_explosion');
         boom.anims.play('explode');             // play explode animation
         boom.on('animationcomplete', () => {    // callback after anim completes
           ship.reset();                         // reset ship position
@@ -164,6 +168,8 @@ class Play extends Phaser.Scene{
           boom.destroy();                       // remove explosion sprite
         });       
         this.p1Score += ship.points;
+        this.highScore += ship.points;
+        this.Highscore.text = this.highScore;
         this.scoreLeft.text = this.p1Score;
       }
 }

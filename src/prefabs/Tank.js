@@ -5,7 +5,7 @@ class Tank extends Phaser.GameObjects.Sprite{
         scene.add.existing(this);
         this.isFiring = false;
         this.moveSpeed = 1;
-        
+        this.sfxEmpty = scene.sound.add('sfx_clicking')
     }
     update() {
         // left/right movement
@@ -16,10 +16,12 @@ class Tank extends Phaser.GameObjects.Sprite{
                 this.x += this.moveSpeed;
         }
         tankPosition = this.x;
+        this.sfxEmpty.play()
 
         
         // reset on miss
         if(this.y <= borderUISize * 3 + borderPadding) {
+            
             this.reset();
         }
     }

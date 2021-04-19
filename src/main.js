@@ -1,4 +1,5 @@
-  
+//Student Name:Robert Williams   
+//Project title: Modded Rocket Patrol Date: 4/19/21 : Time Over 12 hours
 let config = {
   type: Phaser.CANVAS,
   width: 640,
@@ -14,6 +15,4 @@ let borderPadding = borderUISize / 3;
 
 // reserve keyboard variables
 let keyF, keyR, keyLEFT, keyRIGHT, key4, key6, key8, time, tankPosition, highScore;
-var myVar, tim_left, timer, playTime = 60;
-
-var music;
+var timer, music; //Variables for storing values.

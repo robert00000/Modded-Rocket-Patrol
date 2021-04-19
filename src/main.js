@@ -16,3 +16,4 @@ let borderPadding = borderUISize / 3;
 let keyF, keyR, keyLEFT, keyRIGHT, key4, key6, key8, time, tankPosition, highScore;
 var myVar, tim_left, timer, playTime = 60;
 
+var music;

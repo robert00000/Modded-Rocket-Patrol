@@ -6,18 +6,19 @@ var game_time = game.settings.gameTimer;
 
 // functions to add to main program
 function timerFunction() {
-  timerVar = setInterval(everySec, 1000);
-  timerVar = game.settings.gameTimer / 1000 - 10  - parseInt(timerVar / 100);
-  if(timerVar < 0){
+  timerVar = setInterval(everySec, 500);
+  timerVar = (game.settings.gameTimer / 1000 - 24)  - parseInt(timerVar / 100);
+  while(timerVar < 0){
     timerVar = 0;
   }
+  
 }
 
 function everySec() {
   timerVar--;
 }
 function timerReset(){
-  timerVar = game.settings.gameTimer;
+  timerVar = (game.settings.gameTimer / 1000 - 24)  - parseInt(timerVar / 100);
 }
 
 //the box for the timer

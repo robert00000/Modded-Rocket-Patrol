@@ -19,7 +19,7 @@ class Play extends Phaser.Scene{
     }
 //Make player 2 as well as add some kind of music.
     create() {
-        
+        music.play();
         // place tile sprite
         this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
         
@@ -75,7 +75,7 @@ class Play extends Phaser.Scene{
             fixedWidth: 100
         }
         this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, this.p1Score, scoreConfig);
-        this.Highscore = this.add.text(200 + 200, borderUISize + borderPadding*2, this.highScore, scoreConfig);
+        //this.Highscore = this.add.text(200 + 200, borderUISize + borderPadding*2, this.highScore, scoreConfig);
 
         // GAME OVER flag
         this.gameOver = false;
@@ -95,7 +95,7 @@ class Play extends Phaser.Scene{
             frameRate: 30
         });
         
-        this.fire = this.add.text(150 + 150, borderUISize + borderPadding*2, 'Fire', scoreConfig);
+        this.fire = this.add.text(100 + 100, borderUISize + borderPadding*2, 'Score : Time', scoreConfig);
         //The text for the timer.
         // if(setInterval(clockFunc(), 1000)){
             
@@ -112,9 +112,10 @@ class Play extends Phaser.Scene{
         
         //check key input for restart
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)){
-            
+            music.stop();
             this.scene.restart();
-            timerReset();
+            timerReset(); //Tries to have the timer go to its number.
+            this.timer.text = timerVar; //Tries to change the timer text.
         }
 
 

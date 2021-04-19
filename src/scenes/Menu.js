@@ -9,12 +9,15 @@ class Menu extends Phaser.Scene {
       this.load.audio('sfx_explosion', './assets/explosion4.wav');
       this.load.audio('sfx_rocket', './assets/Gun clicking.wav');
       this.load.audio('sfx_clicking', './assets/Gun clicking.wav');
-     // this.load.audio('sfx_music', './assets/8bitMusic.mp3');
+      
+      this.load.audio('sfx_music', './assets/8bitMusic.mp3');
+      
       // load images
       this.load.image('menuTank', './assets/menuBackground.png')
   }
 
   create() {
+       music = this.sound.add('sfx_music')
       // menu text configuration
       let menuConfig = {
           fontFamily: 'Arial',
@@ -42,7 +45,7 @@ class Menu extends Phaser.Scene {
     }
       // show menu text
       this.menuTank = this.add.tileSprite(0, 0, 640, 480, 'menuTank').setOrigin(0, 0);
-      this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'Welcome to a Tank game', menuConfig).setOrigin(0.5);
+      this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'Welcome to Tank game', menuConfig).setOrigin(0.5);
       this.add.text(game.config.width/2, game.config.height/2, 'Use ←→ arrows keys to move & (F) to fire', textConfig).setOrigin(0.5);
       
       
@@ -57,8 +60,8 @@ class Menu extends Phaser.Scene {
     if (Phaser.Input.Keyboard.JustDown(keyLEFT)) {
       // easy mode
       game.settings = {
-        spaceshipSpeed: .5,
-        gameTimer: 70000
+        spaceshipSpeed: 1.5,
+        gameTimer: 60000
       }
       
       this.sound.play('sfx_clicking');
@@ -67,8 +70,8 @@ class Menu extends Phaser.Scene {
     if (Phaser.Input.Keyboard.JustDown(keyRIGHT)) {
       // hard mode
       game.settings = {
-        spaceshipSpeed: 1.5,
-        gameTimer: 45000   
+        spaceshipSpeed: 2.5,
+        gameTimer: 59000   
       }
       
       this.sound.play('sfx_clicking');
